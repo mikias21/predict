@@ -1,0 +1,70 @@
+import pandas as pd
+from sklearn.linear_model import RidgeClassifier
+
+from LearningModels.process_data import ProcessData
+from LearningModels.auxilary_methods import Auxilary
+from LearningModels.more_graphs import MoreGraphs
+process_data = ProcessData()
+auxilary = Auxilary()
+more_graphs = MoreGraphs()
+
+class RidgeClassificationModel(object):
+
+    def __init__(self, data, dependant_var, indivisualInputs, alpha_ridge, max_iteration, solver, unwanted_cols = None, testsize = None):
+        self.data = pd.read_csv(data)
+        self.testsize = testsize if testsize != "" else 0.25 
+        self.alpha_ridge = float(alpha_ridge) if alpha_ridge != 'null' and alpha_ridge != 'undefined' and alpha_ridge != "" else 1.0
+        self.max_iteration = int(float(max_iteration)) if max_iteration != 'null' and max_iteration != 'undefined' and max_iteration != "" else None 
+        self.solver = solver if solver != 'null' and solver != 'undefined' else 'auto'
+        self.classifier = RidgeClassifier(alpha=self.alpha_ridge, max_iter=self.max_iteration, solver=self.solver)
+        # self.dependant_var = self.data.columns.get_loc(dependant_var)
+        self.dependant_var = dependant_var
+        self.unwanted_cols = unwanted_cols.split(",") if unwanted_cols is not None and type(unwanted_cols) is str else None
+        self.indivisualInputs = indivisualInputs
+        self.predictions = None 
+        self. x, self. y, self. x_train, self. x_test, self. y_train, self. y_test, self. dependant_var_str, self. indpendant_var_str, self.scaler = process_data.process_data_classification(self.data, self.dependant_var, self.unwanted_cols, self.testsize)
+    
+
+    def make_classification(self):
+        self.predictions = auxilary.make_classification(self.x, self.y, self.x_train, self.x_test, self.y_train, self.classifier)
+        return self.predictions, self.data.columns
+        
+    def make_single_classification(self):
+        # Create new data frame
+        single_classification = auxilary.make_single_classification(self.indivisualInputs, self.classifier, self.scaler)
+        return single_classification
+
+    def get_success_rate(self):
+        mae, mse, r2score, accuracy, confusion = auxilary.get_success_rate_classification(self.y, self.y_test, self.predictions)
+        return mae, mse, r2score, accuracy, confusion
+
+    def draw_graph(self, filename1, filename2, filename3):
+        title1 = "Ridge Classification Testing Data set"
+        title2 = "Ridge Classification Testing Data set"
+        auxilary.draw_graph_classification(self.x, self.y, self.x_train, self.x_test, self.y_train, self.y_test, 
+        self.indpendant_var_str, self.dependant_var_str, filename1, filename2, filename3, self.classifier, title1, title2, self.predictions)
+
+    def get_relational_columns(self):
+        relational_cols = []
+        data_cols = list(self.data.columns)
+        for col in data_cols:
+            if col not in self.unwanted_cols and col != self.dependant_var:
+                relational_cols.append(col)
+        return relational_cols 
+
+    def get_more_relation_graphs(self, app):
+        relational_cols = self.get_relational_columns()
+        reg_graphs = more_graphs.draw_regression_plot(app, relational_cols, self.dependant_var, self.data)
+        lmp_graphs = more_graphs.draw_lmplot(app, relational_cols, self.dependant_var, self.data)
+        mean_graphs = more_graphs.draw_mean_estimated_graph(app, relational_cols, self.dependant_var, self.data)
+        jitter_graphs = more_graphs.draw_jitter_plot(app, relational_cols, self.dependant_var, self.data)
+        joint_graphs = more_graphs.draw_joint_plot_reg(app, relational_cols, self.dependant_var, self.data)
+        dist_graphs = more_graphs.distribution_graph(app, self.data[self.dependant_var])
+        # Create Corelation matrix
+        correlation_matrix = self.data.corr().round(2)
+        correlation_graphs = more_graphs.corelation_matrix(app, correlation_matrix)
+        return reg_graphs, lmp_graphs, mean_graphs, jitter_graphs, joint_graphs, dist_graphs, correlation_graphs
+    
+    def model_summary(self):
+        dataset_description, dataset_columns, dataset_shape, dataset_memory = auxilary.dataset_summary(self.data)
+        return dataset_description, dataset_columns, dataset_shape, dataset_memory
