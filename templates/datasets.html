@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="741556538465-6ivmg97mhf8ftrmgn55bs4fadm6b1634.apps.googleusercontent.com"
+    />
+    <link
+      rel="stylesheet"
+      href="/static/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/vendor/fontawesome/all.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>Predict | dataset</title>
+  </head>
+  <body class="bg-light">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+        <h4 style="display: inline-block; padding-left: 5px">P R E D I C T</h4>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        style="margin-right: 40px"
+      >
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown" id="more-items-dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Records and More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/datasetHistory"
+                ><i class="fas fa-database"></i> Dataset History</a
+              >
+              <a class="dropdown-item" href="/models"
+                ><i class="fas fa-atom"></i> Models</a
+              >
+              <a class="dropdown-item" href="/settings"
+                ><i class="fas fa-cog"></i> Settings</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/datasets">Datasets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/help">Help & Issues</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item" id="login_logout_container">
+            <div class="g-signin2" style="display: none"></div>
+            <a class="nav-link" href="#"
+              ><img src="/static/img/developer.png" id="user_icon"
+            /></a>
+            <div class="user-dropdown-content">
+              <a href="#" id="login_logout"
+                ><i class="fas fa-door-open"></i> log out</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- End of Nav bar -->
+
+    <!-- Main Page Content -->
+    <div class="container mt-4 dataset">
+      <h4 class="mt-4 dataset__header">preloaded datasets from scikit learn</h4>
+
+      <!-- Datasets -->
+      <div class="alert alert-info mt-4">
+        <p class="lead">
+          <i class="fas fa-table"></i
+          ><span class="p-2 main-title">Boston house-prices dataset</span>
+        </p>
+        <p>
+          <small class="description"
+            >Load and return the boston house-prices dataset
+            (regression).</small
+          >
+        </p>
+        <p>
+          <small class="description">
+            Returns: data : Bunch Dictionary-like object, the interesting
+            attributes are: ‘data’, the data to learn, ‘target’, the regression
+            targets, and ‘DESCR’, the full description of the dataset.
+          </small>
+        </p>
+        <div class="table-info">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Samples total</th>
+                <th scope="col">Dimensionality</th>
+                <th scope="col">Features</th>
+                <th scope="col">Targets</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">506</th>
+                <td>13</td>
+                <td>real, positive</td>
+                <td>real 5. - 50.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="btn-holder">
+          <input type="hidden" value="load_boston" />
+          <button class="btn btn-outline-info btn-sm load-dataset">load</button>
+        </div>
+      </div>
+      <!-- ----------------------------------------------------- -->
+      <div class="alert alert-info mt-4">
+        <p class="lead">
+          <i class="fas fa-table"></i
+          ><span class="p-2 main-title">Iris dataset</span>
+        </p>
+        <p>
+          <small class="description"
+            >Load and return the iris dataset (classification).
+          </small>
+        </p>
+        <p>
+          <small
+            >The iris dataset is a classic and very easy multi-class
+            classification dataset.</small
+          >
+        </p>
+        <p>
+          <small class="description">
+            Returns: data : Bunch Dictionary-like object, the interesting
+            attributes are: ‘data’, the data to learn, ‘target’, the
+            classification labels, ‘target_names’, the meaning of the labels,
+            ‘feature_names’, the meaning of the features, and ‘DESCR’, the full
+            description of the dataset.
+          </small>
+        </p>
+        <div class="table-info">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Classes</th>
+                <th scope="col">Samples per class</th>
+                <th scope="col">Samples total</th>
+                <th scope="col">Dimensionality</th>
+                <th scope="col">Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">3</th>
+                <td>50</td>
+                <td>150</td>
+                <td>4</td>
+                <td>real, positive</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="btn-holder">
+          <input type="hidden" value="load_iris" />
+          <button class="btn btn-outline-info btn-sm load-dataset">load</button>
+        </div>
+      </div>
+
+      <!-- ----------------------------------------------------- -->
+
+      <div class="alert alert-info mt-4" style="margin-bottom: 30rem">
+        <p class="lead">
+          <i class="fas fa-table"></i
+          ><span class="p-2 main-title">Diabetes dataset</span>
+        </p>
+        <p>
+          <small class="description"
+            >Load and return the diabetes dataset (regression).
+          </small>
+        </p>
+        <p>
+          <small
+            >The iris dataset is a classic and very easy multi-class
+            classification dataset.</small
+          >
+        </p>
+        <p>
+          <small class="description">
+            Returns: data : Bunch Dictionary-like object, the interesting
+            attributes are: ‘data’, the data to learn and ‘target’, the
+            regression target for each sample.
+          </small>
+        </p>
+        <div class="table-info">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Samples total</th>
+                <th scope="col">Dimensionality</th>
+                <th scope="col">Features</th>
+                <th scope="col">Targets</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">442</th>
+                <td>10</td>
+                <td>real, -.2 < x < .2</td>
+                <td>integer 25 - 346</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="btn-holder">
+          <input type="hidden" value="load_diabetes" />
+          <button class="btn btn-outline-info btn-sm load-dataset">load</button>
+        </div>
+      </div>
+
+      <!-- ---------------------------------------------------------------------- -->
+
+      <!-- End of datasets -->
+
+      <div class="dataset__container mt-4" id="dataset__container"></div>
+      <div class="dataset_main_table mt-4" id="dataset_main_table"></div>
+    </div>
+    <!-- Main Page Content -->
+
+    <!-- Loading gif loader -->
+    <div class="container mx-auto" id="loader-gif-holder">
+      <div class="row h-100 justify-content-center align-items-center">
+        <img
+          src="/static/img/loading2.gif"
+          alt="LOADING_DATA"
+          id="loader-gif"
+        />
+      </div>
+    </div>
+    <!-- Loading gif loader -->
+
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark fixed-bottom">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3 text-light">
+        <small>© 2021 Copyright</small>
+        <a href="#"> <small>Mikias Berhanu</small></a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <!-- Process Data Modal -->
+    <div
+      class="modal fade"
+      id="processDataModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="processDataLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="processDataLabel">
+              Process your .csv file here
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modal-body">
+            <div id="modal-backdrop"></div>
+            <div id="notice-error">
+              <div class="alert alert-info fade show" role="alert">
+                <p>
+                  <small>
+                    The following inputs will be used as parameter for trainig
+                    the machine learning algoritm. please input valid parameter
+                    as it will affect the output of the system directly.
+                  </small>
+                </p>
+              </div>
+            </div>
+            <input type="hidden" id="dataset-name" value="" />
+            <p><strong>The dataset you will be working with</strong></p>
+            <div
+              class="data-frame-head mt-4 border border-primary"
+              id="data-frame-head"
+            ></div>
+
+            <!--  Main Form-->
+            <div class="container mt-4">
+              <form
+                method=""
+                action=""
+                id="main-sklearn-data-process-form"
+              ></form>
+            </div>
+            <!-- Main Form -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Process Data Modal -->
+
+    <!-- Results Data Modal -->
+    <div
+      class="modal fade"
+      id="resultDataModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="resultsDataLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="resultsDataLabel">
+              Result from your model
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div
+                class="alert alert-info fade show"
+                role="alert"
+                id="process-res"
+              >
+                <p>
+                  <small>
+                    The following inputs will be used as parameter for trainig
+                    the machine learning algoritm. please input valid parameter
+                    as it will affect the output of the system directly.
+                  </small>
+                </p>
+              </div>
+            </div>
+
+            <!--  Main Form-->
+            <div class="container mt-4">
+              <form method="" action="" id="prediction-input"></form>
+            </div>
+            <!-- Main Form -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Process Data Modal -->
+  </body>
+</html>
+
+<script src="/static/vendor/jquery/jquery.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/vendor/fontawesome/all.min.js"></script>
+<script src="/static/vendor/papa/papaparse.min.js"></script>
+<script src="/static/js/sklearndatasetmarkup.js"></script>
+<script src="/static/js/sklearnform.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/datasets.js"></script>
+<script src="/static/js/session_manager.js"></script>
+<script src="/static/js/google_logout.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>

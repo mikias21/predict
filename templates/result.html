@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="741556538465-6ivmg97mhf8ftrmgn55bs4fadm6b1634.apps.googleusercontent.com"
+    />
+    <link
+      rel="stylesheet"
+      href="/static/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/vendor/fontawesome/all.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>Predict | prediction result</title>
+  </head>
+  <body class="bg-light">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+        <h4 style="display: inline-block; padding-left: 5px">P R E D I C T</h4>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        style="margin-right: 40px"
+      >
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown" id="more-items-dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Records and More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/datasetHistory"
+                ><i class="fas fa-database"></i> Dataset History</a
+              >
+              <a class="dropdown-item" href="/models"
+                ><i class="fas fa-atom"></i> Models</a
+              >
+              <a class="dropdown-item" href="/settings"
+                ><i class="fas fa-cog"></i> Settings</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/datasets">Datasets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/help">Help & Issues</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item" id="login_logout_container">
+            <div class="g-signin2" style="display: none"></div>
+            <a class="nav-link" href="#"
+              ><img src="/static/img/developer.png" id="user_icon"
+            /></a>
+            <div class="user-dropdown-content">
+              <a href="#" id="login_logout"
+                ><i class="fas fa-door-open"></i> log out</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Modal for displaying the graph -->
+    <div
+      class="modal fade"
+      id="displayGraph"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="displayGraphTitleSimple"
+      aria-hidden="true"
+      style="margin-bottom: 5rem"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="displayGraphTitle">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="displaygraphbody"></div>
+          <div class="modal-footer">
+            <a
+              href="#"
+              class="btn btn-outline-secondary btn-sm"
+              id="download-link"
+              download="graph.png"
+              ><i class="fas fa-file-download"></i
+            ></a>
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for displaying the graph -->
+
+    <!-- content -->
+
+    <div
+      class="container"
+      id="predictions-holder"
+      style="
+        margin-top: 3rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 100px;
+      "
+    ></div>
+
+    <!-- end of content -->
+
+    <!-- Footer -->
+    <footer
+      class="page-footer font-small bg-dark fixed-bottom"
+      style="width: 100%"
+    >
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3 text-light">
+        <small>© 2021 Copyright</small>
+        <a href="#"> <small>Mikias Berhanu</small></a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </body>
+</html>
+
+<script src="/static/vendor/jquery/jquery.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/vendor/fontawesome/all.min.js"></script>
+<script src="/static/vendor/papa/papaparse.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/results.js"></script>
+<script src="/static/js/session_manager.js"></script>
+<script src="/static/js/google_logout.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="741556538465-6ivmg97mhf8ftrmgn55bs4fadm6b1634.apps.googleusercontent.com"
+    />
+    <link
+      rel="stylesheet"
+      href="/static/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/vendor/fontawesome/all.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>Predict | help and issues</title>
+  </head>
+  <body class="bg-light">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+        <h4 style="display: inline-block; padding-left: 5px">P R E D I C T</h4>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        style="margin-right: 40px"
+      >
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown" id="more-items-dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Records and More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/datasetHistory"
+                ><i class="fas fa-database"></i> Dataset History</a
+              >
+              <a class="dropdown-item" href="/models"
+                ><i class="fas fa-atom"></i> Models</a
+              >
+              <a class="dropdown-item" href="/settings"
+                ><i class="fas fa-cog"></i> Settings</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/datasets">Datasets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/help">Help & Issues</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item" id="login_logout_container">
+            <div class="g-signin2" style="display: none"></div>
+            <a class="nav-link" href="#"
+              ><img src="/static/img/developer.png" id="user_icon"
+            /></a>
+            <div class="user-dropdown-content">
+              <a href="#" id="login_logout"
+                ><i class="fas fa-door-open"></i> log out</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- End of Nav bar -->
+
+    <!-- main-content -->
+    <div class="main-help-content">
+      <div class="errors-container mt-4 border-right">
+        <p class="p-2">
+          <i class="fas fa-people-carry text-info"></i>
+          <small
+            >When you try to create Machine learning models, you will face a
+            number of challanges and issues and the same goes to this project.
+            Down below I have listed common issues that you face while working
+            on this app, I have also given the ultimate solution for problems.
+            These are my findings during testing and if you meet with any other
+            issues or if my solutions are not working for you, make sure to file
+            an issue down on the form below. This will help me to improve the
+            app and make it more reliable.
+          </small>
+        </p>
+
+        <ul class="list-group">
+          <li class="list-group-item border-none border-0 alert-danger mt-4">
+            <small class="text-danger"
+              ><i class="fas fa-bug text-danger"></i> Found input variables with
+              inconsistent numbers of samples: [x, y]</small
+            >
+            <p class="text-info p-2">
+              <small>
+                This issue arises when your dataset input is not consistent when
+                its splitted. Meaning the number of training size and testing
+                size are not the same. This happens mostly due to two reasons,
+                the first one is if your dataset doesn't fit with the algorithm
+                you selected to work with or the second one is that your dataset
+                have wrong format. The solution is simple, its either to cross
+                check your dataset or change the algorithm you have selected and
+                try another one.
+              </small>
+            </p>
+          </li>
+          <li class="list-group-item border-none border-0 alert-danger mt-4">
+            <small class="text-danger"
+              ><i class="fas fa-bug text-danger"></i> '&lt;' not supported
+              between instances of 'int' and 'str'</small
+            >
+            <p class="text-info p-2">
+              <small>
+                This happens when you are supposed to use integer and you used
+                string values such as letters and characthers. When this issue
+                happens make sure to use lower integer values or skip it and use
+                default values that are given.
+              </small>
+            </p>
+          </li>
+          <li class="list-group-item border-none border-0 alert-danger mt-4">
+            <small class="text-danger"
+              ><i class="fas fa-bug text-danger"></i> matmul: Input operand 1
+              has a mismatch in its core dimension 0, with gufunc signature
+              (n?,k),(k,m?)->(n?,m?)</small
+            >
+            <p class="text-info p-2">
+              <small>
+                Ok, so this one is telling us that we have removed columns from
+                our dataset making creating dataset dimension mismatch. This
+                happens specially if you are working witht the preloaded
+                datasets and you checked some columns and make them unwanted
+                columns. make sure you remove columns that will not cause this
+                issue. However, if it happens uncheck the column and proceed
+                with your work everything should work fine
+              </small>
+            </p>
+          </li>
+          <!-- <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">A fourth item</li>
+          <li class="list-group-item">And a fifth one</li> -->
+        </ul>
+      </div>
+      <div class="help-container p-2">
+        <p class="p-2">
+          <i class="fas fa-people-carry text-info"></i>
+          <small
+            >These are some of the common terms and values you will be working
+            with. You can refer this table if any of the options available are
+            confiusing
+          </small>
+        </p>
+        <!-- Info Table -->
+        <table class="table">
+          <thead class="thead-dark" style="height: 10px">
+            <tr>
+              <th scope="col">terms</th>
+              <th scope="col">description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><small>dependant variable</small></td>
+              <td>
+                <small
+                  >Dependent variables receive this name because, in an
+                  experiment, their values are studied under the supposition or
+                  hypothesis that they depend, by some law or rule (e.g., by a
+                  mathematical function), on the values of other variables.
+                  Basically they are what you will predict for.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>unwanted columns</small></td>
+              <td>
+                <small
+                  >columns from your dataset that you wish you don't want to
+                  include. This column should include values that will not
+                  directly affect the result or model's performance</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>Machine Learning types</small></td>
+              <td>
+                <small
+                  >here you will choose which machine learning type you want to
+                  working with. It can be regression , classification and neural
+                  networks. All of them are different on how they work and also
+                  their implementation</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>test size</small></td>
+              <td>
+                <small
+                  >A test dataset is a dataset that is independent of the
+                  training dataset, but that follows the same probability
+                  distribution as the training dataset. If a model fit to the
+                  training dataset also fits the test dataset well, minimal
+                  overfitting has taken place</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>degree</small></td>
+              <td>
+                <small
+                  >The degree of the polynomial features. int, default=2</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>kernel</small></td>
+              <td>
+                <small
+                  ><strong
+                    >kernel{‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’},
+                    default=’rbf’</strong
+                  ></small
+                >
+                <small
+                  >Specifies the kernel type to be used in the algorithm. It
+                  must be one of ‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’,
+                  ‘precomputed’ or a callable. If none is given, ‘rbf’ will be
+                  used. If a callable is given it is used to pre-compute the
+                  kernel matrix from data matrices; that matrix should be an
+                  array of shape (n_samples, n_samples).</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>n_estimators</small></td>
+              <td>
+                <small
+                  >int, default=100 The number of trees in the forest.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>alpha</small></td>
+              <td>
+                <small
+                  ><strong
+                    >{float, ndarray of shape (n_targets,)}, default=1.0</strong
+                  ></small
+                >
+                <small
+                  >Regularization strength; must be a positive float.
+                  Regularization improves the conditioning of the problem and
+                  reduces the variance of the estimates. Larger values specify
+                  stronger regularization. Alpha corresponds to 1 / (2C) in
+                  other linear models such as LogisticRegression or LinearSVC.
+                  If an array is passed, penalties are assumed to be specific to
+                  the targets. Hence they must correspond in number.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>max_iter (Max Iteration)</small></td>
+              <td>
+                <small><strong>int, default=None</strong></small>
+                <small
+                  >Maximum number of iterations for conjugate gradient solver.
+                  For ‘sparse_cg’ and ‘lsqr’ solvers, the default value is
+                  determined by scipy.sparse.linalg. For ‘sag’ solver, the
+                  default value is 1000.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>solver</small></td>
+              <td>
+                <small
+                  ><strong
+                    >{auto, svd, cholesky, lsqr, sparse_cg, sag, saga},
+                    default=auto</strong
+                  ></small
+                >
+                <small
+                  >Solver to use in the computational routines: ‘auto’ chooses
+                  the solver automatically based on the type of data. ‘svd’ uses
+                  a Singular Value Decomposition of X to compute the Ridge
+                  coefficients. More stable for singular matrices than
+                  ‘cholesky’. ‘cholesky’ uses the standard scipy.linalg.solve
+                  function to obtain a closed-form solution. ‘sparse_cg’ uses
+                  the conjugate gradient solver as found in
+                  scipy.sparse.linalg.cg. As an iterative algorithm, this solver
+                  is more appropriate than ‘cholesky’ for large-scale data
+                  (possibility to set tol and max_iter). ‘lsqr’ uses the
+                  dedicated regularized least-squares routine
+                  scipy.sparse.linalg.lsqr. It is the fastest and uses an
+                  iterative procedure. ‘sag’ uses a Stochastic Average Gradient
+                  descent, and ‘saga’ uses its improved, unbiased version named
+                  SAGA. Both methods also use an iterative procedure, and are
+                  often faster than other solvers when both n_samples and
+                  n_features are large. Note that ‘sag’ and ‘saga’ fast
+                  convergence is only guaranteed on features with approximately
+                  the same scale. You can preprocess the data with a scaler from
+                  sklearn.preprocessing. All last five solvers support both
+                  dense and sparse data. However, only ‘sag’ and ‘sparse_cg’
+                  supports sparse input when fit_intercept is True.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>n_neighbors (Number of Neighbours)</small></td>
+              <td>
+                <small><strong>int, default=5</strong></small>
+                <small
+                  >Number of neighbors to use by default for kneighbors
+                  queries.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>metric</small></td>
+              <td>
+                <small
+                  ><strong>str or callable, default=minkowski</strong></small
+                >
+                <small
+                  >the distance metric to use for the tree. The default metric
+                  is minkowski, and with p=2 is equivalent to the standard
+                  Euclidean metric. See the documentation of DistanceMetric for
+                  a list of available metrics. If metric is “precomputed”, X is
+                  assumed to be a distance matrix and must be square during fit.
+                  X may be a sparse graph, in which case only “nonzero” elements
+                  may be considered neighbors.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>p</small></td>
+              <td>
+                <small><strong>int, default=2</strong></small>
+                <small
+                  >Power parameter for the Minkowski metric. When p = 1, this is
+                  equivalent to using manhattan_distance (l1), and
+                  euclidean_distance (l2) for p = 2. For arbitrary p,
+                  minkowski_distance (l_p) is used.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>criterion</small></td>
+              <td>
+                <small
+                  ><strong>{“gini”, “entropy”}, default=”gini”</strong></small
+                >
+                <small
+                  >The function to measure the quality of a split. Supported
+                  criteria are “gini” for the Gini impurity and “entropy” for
+                  the information gain.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>activation</small></td>
+              <td>
+                <small
+                  ><strong
+                    >{‘identity’, ‘logistic’, ‘tanh’, ‘relu’},
+                    default=’relu’</strong
+                  ></small
+                >
+                <small
+                  >Activation function for the hidden layer. ‘identity’, no-op
+                  activation, useful to implement linear bottleneck, returns
+                  f(x) = x ‘logistic’, the logistic sigmoid function, returns
+                  f(x) = 1 / (1 + exp(-x)). ‘tanh’, the hyperbolic tan function,
+                  returns f(x) = tanh(x). ‘relu’, the rectified linear unit
+                  function, returns f(x) = max(0, x)</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>solver</small></td>
+              <td>
+                <small
+                  ><strong
+                    >{‘lbfgs’, ‘sgd’, ‘adam’}, default=’adam’</strong
+                  ></small
+                >
+                <small
+                  >The solver for weight optimization. ‘lbfgs’ is an optimizer
+                  in the family of quasi-Newton methods. ‘sgd’ refers to
+                  stochastic gradient descent. ‘adam’ refers to a stochastic
+                  gradient-based optimizer proposed by Kingma, Diederik, and
+                  Jimmy Ba Note: The default solver ‘adam’ works pretty well on
+                  relatively large datasets (with thousands of training samples
+                  or more) in terms of both training time and validation score.
+                  For small datasets, however, ‘lbfgs’ can converge faster and
+                  perform better.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>learning_rate</small></td>
+              <td>
+                <small
+                  ><strong
+                    >{‘constant’, ‘invscaling’, ‘adaptive’},
+                    default=’constant’</strong
+                  ></small
+                >
+                <small
+                  >Learning rate schedule for weight updates. ‘constant’ is a
+                  constant learning rate given by ‘learning_rate_init’.
+                  ‘invscaling’ gradually decreases the learning rate at each
+                  time step ‘t’ using an inverse scaling exponent of ‘power_t’.
+                  effective_learning_rate = learning_rate_init / pow(t, power_t)
+                  ‘adaptive’ keeps the learning rate constant to
+                  ‘learning_rate_init’ as long as training loss keeps
+                  decreasing. Each time two consecutive epochs fail to decrease
+                  training loss by at least tol, or fail to increase validation
+                  score by at least tol if ‘early_stopping’ is on, the current
+                  learning rate is divided by 5.</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><small>max_iter</small></td>
+              <td>
+                <small><strong>int, default=200</strong></small>
+                <small
+                  >Maximum number of iterations. The solver iterates until
+                  convergence (determined by ‘tol’) or this number of
+                  iterations. For stochastic solvers (‘sgd’, ‘adam’), note that
+                  this determines the number of epochs (how many times each data
+                  point will be used), not the number of gradient steps.</small
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="issue-form">
+      <form id="main-issue-form" class="mt-4">
+        <h5>file an issue</h5>
+        <div id="errors"></div>
+        <div class="form-group mt-4">
+          <label for="email"><small>Email address</small></label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="name@example.com"
+          />
+        </div>
+        <div class="form-group">
+          <label for="issue"><small>Explain your issue</small></label>
+          <textarea
+            style="resize: none"
+            class="form-control"
+            id="issue"
+            rows="3"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-primary btn-sm">
+          Submit
+        </button>
+      </form>
+    </div>
+    <!-- Main content -->
+
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark fixed-bottom">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3 text-light">
+        <small>© 2021 Copyright</small>
+        <a href="#"> <small>Mikias Berhanu</small></a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </body>
+</html>
+
+<script src="/static/vendor/jquery/jquery.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/vendor/fontawesome/all.min.js"></script>
+<script src="/static/vendor/papa/papaparse.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/issueemail.js"></script>
+<script src="/static/js/session_manager.js"></script>
+<script src="/static/js/google_logout.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>

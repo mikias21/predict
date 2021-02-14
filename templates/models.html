@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="741556538465-6ivmg97mhf8ftrmgn55bs4fadm6b1634.apps.googleusercontent.com"
+    />
+    <link
+      rel="stylesheet"
+      href="/static/vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/vendor/fontawesome/all.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>Predict | models</title>
+  </head>
+  <body class="bg-light">
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+        <h4 style="display: inline-block; padding-left: 5px">P R E D I C T</h4>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        style="margin-right: 40px"
+      >
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown" id="more-items-dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Records and More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/datasetHistory"
+                ><i class="fas fa-database"></i> Dataset History</a
+              >
+              <a class="dropdown-item" href="/models"
+                ><i class="fas fa-atom"></i> Models</a
+              >
+              <a class="dropdown-item" href="/settings"
+                ><i class="fas fa-cog"></i> Settings</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/datasets">Datasets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/help">Help & Issues</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item" id="login_logout_container">
+            <div class="g-signin2" style="display: none"></div>
+            <a class="nav-link" href="#"
+              ><img src="/static/img/developer.png" id="user_icon"
+            /></a>
+            <div class="user-dropdown-content">
+              <a href="#" id="login_logout"
+                ><i class="fas fa-door-open"></i> log out</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- End of Nav bar -->
+
+    <div class="home__container">
+      <div class="home__containerHeader">
+        <h3 class="p-4">Recent models that you worked with</h3>
+      </div>
+
+      <div id="main-content"></div>
+    </div>
+
+    <!-- Modal to display model description -->
+    <div
+      class="modal fade"
+      id="model-description-model"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="model-title-main">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="model-main-body">
+            <div class="jumbotron bg-light">
+              <h3 class="display-5">Model Info</h3>
+              <hr class="my-4" />
+              <p>
+                <small
+                  ><strong>Dataset used => </strong>
+                  <span id="dataset-name">Helloworld</span></small
+                >
+              </p>
+              <p>
+                <small>
+                  <strong>Dependant Variable => </strong>
+                  <span id="dependant-var">Helloworld</span>
+                </small>
+              </p>
+              <p>
+                <small
+                  ><strong>Unused Columns => </strong>
+                  <span id="unused-cols">Helloworld</span></small
+                >
+              </p>
+              <p>
+                <small>
+                  <strong>Machine Learning Type => </strong>
+                  <span id="machine-learning-type">Helloworld</span>
+                </small>
+              </p>
+              <p>
+                <small
+                  ><strong>Algorithm Used => </strong>
+                  <span id="algorithm">Helloworld</span></small
+                >
+              </p>
+              <p>
+                <small
+                  ><strong>Test size => </strong>
+                  <span id="test-size">Helloworld</span></small
+                >
+              </p>
+              <p>
+                <small>
+                  <strong>Indivisual Input => </strong>
+                  <span id="indivisual-input">Helloworld</span>
+                </small>
+              </p>
+            </div>
+
+            <!-- parameter info table -->
+            <table class="table">
+              <thead class="thead-dark" style="overflow-y: scroll !important">
+                <tr>
+                  <th scope="col"><small>Polynomial Degree</small></th>
+                  <th scope="col"><small>Kernel Options</small></th>
+                  <th scope="col"><small>N-estimators</small></th>
+                  <th scope="col"><small>N-neighbours</small></th>
+                  <th scope="col"><small>Metric</small></th>
+                  <th scope="col"><small>p</small></th>
+                </tr>
+              </thead>
+              <tbody id="model-info-1"></tbody>
+            </table>
+
+            <table class="table">
+              <thead class="thead-dark" style="overflow-y: scroll !important">
+                <tr>
+                  <th scope="col"><small>Kernel Options SVC</small></th>
+                  <th scope="col"><small>Criterion</small></th>
+                  <th scope="col"><small>Criterion RFC</small></th>
+                  <th scope="col"><small>N-estimators RFC</small></th>
+                  <th scope="col"><small>Alpha Ridge</small></th>
+                  <th scope="col"><small>Max-Iteration</small></th>
+                  <th scope="col"><small>Solver</small></th>
+                </tr>
+              </thead>
+              <tbody id="model-info-2"></tbody>
+            </table>
+
+            <table class="table">
+              <thead class="thead-dark" style="overflow-y: scroll !important">
+                <tr>
+                  <th scope="col"><small>MLPC Activation</small></th>
+                  <th scope="col"><small>MLPC Solver</small></th>
+                  <th scope="col"><small>MLPC Learning Rate</small></th>
+                  <th scope="col"><small>MLPC Max-Iteration</small></th>
+                  <th scope="col"><small>MLPR Activation</small></th>
+                  <th scope="col"><small>MLPR Solver</small></th>
+                  <th scope="col"><small>MLPR Learning Rate</small></th>
+                  <th scope="col"><small>MLPR Max-Iteration</small></th>
+                </tr>
+              </thead>
+              <tbody id="model-info-3"></tbody>
+            </table>
+            <!-- End of table -->
+
+            <!-- Model info -->
+            <div class="jumbotron bg-light">
+              <h3 class="display-5">Additional info</h3>
+              <hr class="my-4" />
+              <p>
+                <small
+                  ><strong>count => </strong><span id="data-count"></span
+                ></small>
+              </p>
+              <p>
+                <small
+                  ><strong>max => </strong><span id="data-max"></span
+                ></small>
+              </p>
+              <p>
+                <small
+                  ><strong>min => </strong><span id="data-min"></span
+                ></small>
+              </p>
+              <p>
+                <small
+                  ><strong>std => </strong><span id="data-std"></span
+                ></small>
+              </p>
+              <p>
+                <small
+                  ><strong>mean => </strong><span id="data-mean"></span
+                ></small>
+              </p>
+              <p>
+                <small
+                  ><strong>dataset columns => </strong
+                  ><span id="data-cols"></span
+                ></small>
+              </p>
+              <p>
+                <small
+                  ><strong>dataset memory => </strong
+                  ><span id="data-memory"></span
+                ></small>
+              </p>
+              <p>
+                <small
+                  ><strong>dataset shape => </strong
+                  ><span id="data-shape"></span
+                ></small>
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal to display model description -->
+
+    <!-- Modal for deleting model -->
+    <div
+      class="modal fade"
+      id="deleteModel"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Delete Model</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="text-danger">
+              <small>Are you sure you want to delete this model?</small>
+            </p>
+            <p class="text-danger">
+              <small>Once its deleted it can't be recovered...</small>
+            </p>
+            <input type="hidden" id="model-id-holder" />
+            <input type="hidden" id="model-idmain-holder" />
+            <input type="hidden" id="model-type-holder" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm"
+              data-dismiss="modal"
+            >
+              cancle
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-sm"
+              id="delete-model"
+            >
+              delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Modal -->
+
+    <!-- Modal for Viewing model result-->
+    <div
+      class="modal fade"
+      id="viewModalResult"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Model Result</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="jumbotron">
+                <h4>Predictions made by the model</h4>
+                <hr class="my-4" />
+                <div id="predictions-made"></div>
+              </div>
+
+              <div class="jumbotron">
+                <h4>
+                  Single Prediction made in relation with columns
+                  <span id="columns-prediction"></span>
+                </h4>
+                <hr class="my-4" />
+                <div id="single-prediction-made"></div>
+              </div>
+
+              <div class="jumbotron">
+                <h4>Success Rate for the model</h4>
+                <hr class="my-4" />
+                <div>
+                  <p>
+                    <small
+                      ><strong>Mean Absolute Error (MAE) =></strong>
+                      <span id="mae-holder"></span
+                    ></small>
+                  </p>
+                  <p>
+                    <small
+                      ><strong>Mean Squared Error (MSE) =></strong>
+                      <span id="mse-holder"></span
+                    ></small>
+                  </p>
+                  <p>
+                    <small
+                      ><strong>R2Score (R-score) =></strong>
+                      <span id="r2score-holder"></span
+                    ></small>
+                  </p>
+                  <p>
+                    <small
+                      ><strong>Root Mean Squared Error (RMSE) =></strong>
+                      <span id="rmse-holder"></span
+                    ></small>
+                  </p>
+                </div>
+              </div>
+
+              <div class="jumbotron">
+                <h4>Graphs for the model</h4>
+                <hr class="my-4" />
+                <div id="graphs-holder">
+                  <div id="set1"></div>
+                  <div id="set2"></div>
+                </div>
+              </div>
+
+              <div class="jumbotron">
+                <h4>Dataset and Model Description</h4>
+                <div
+                  id="model-description-holder"
+                  style="overflow-x: scroll"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary btn-sm"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Modal -->
+
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark fixed-bottom">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3 text-light">
+        <small>© 2021 Copyright</small>
+        <a href="#"> <small>Mikias Berhanu</small></a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </body>
+</html>
+
+<script src="/static/vendor/jquery/jquery.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/vendor/fontawesome/all.min.js"></script>
+<script src="/static/vendor/papa/papaparse.min.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="/static/js/formValidation.js"></script>
+<script src="/static/js/redirect_login.js"></script>
+<script src="/static/js/model_display.js"></script>
+<script src="/static/js/session_manager.js"></script>
+<script src="/static/js/google_logout.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
